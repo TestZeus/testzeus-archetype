@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.testzeus</groupId>
 	<artifactId>Test_Zeus</artifactId>
-	<version>1.1.0</version>
+	<version>1.0.0</version>
 	<packaging>jar</packaging> 
 	<name>TestZeus</name>
 	<description>UI and API testing framework built specifically for Salesforce</description>
@@ -217,7 +217,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>ossrh</serverId>
-                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
             </plugin>
