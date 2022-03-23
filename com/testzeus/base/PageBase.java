@@ -1,10 +1,9 @@
-package com.AT.base;
+package testzeus.base;
 
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.awt.image.Raster;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
@@ -58,9 +57,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 
 public class PageBase { // This file contains common framework level methods for common interactions
@@ -963,31 +959,28 @@ public class PageBase { // This file contains common framework level methods for
 
 	}
 
-	public void writeDynamicJsonFile(String jsonpathtokey, String value) {
-		try {// As we are using the dynamic json file as a local data store, we can write
-				// data to it using this method
-
-			String sPath = new java.io.File(".").getCanonicalPath();
-			System.out.println("Path: " + sPath);
-			File jsonFile = new File(sPath + File.separator + "src" + File.separator + "main" + File.separator
-					+ "resources" + File.separator + "dynamicdata.json");
-
-			System.out.println("Writing URL variables to json file");
-
-			DocumentContext doc = JsonPath.parse(jsonFile).
-
-					set(jsonpathtokey, value);
-
-			JsonObject jsonObj = new GsonBuilder().create().toJsonTree(doc.json()).getAsJsonObject();
-			FileWriter file = new FileWriter(jsonFile);
-			String a = jsonObj.toString();
-			file.write(a);
-			file.flush();
-			file.close();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+	/*
+	 * public void writeDynamicJsonFile(String jsonpathtokey, String value) { try
+	 * {// As we are using the dynamic json file as a local data store, we can write
+	 * // data to it using this method
+	 * 
+	 * String sPath = new java.io.File(".").getCanonicalPath();
+	 * System.out.println("Path: " + sPath); File jsonFile = new File(sPath +
+	 * File.separator + "src" + File.separator + "main" + File.separator +
+	 * "resources" + File.separator + "dynamicdata.json");
+	 * 
+	 * System.out.println("Writing URL variables to json file");
+	 * 
+	 * DocumentContext doc = JsonPath.parse(jsonFile).
+	 * 
+	 * set(jsonpathtokey, value);
+	 * 
+	 * JsonObject jsonObj = new
+	 * GsonBuilder().create().toJsonTree(doc.json()).getAsJsonObject(); FileWriter
+	 * file = new FileWriter(jsonFile); String a = jsonObj.toString();
+	 * file.write(a); file.flush(); file.close();
+	 * 
+	 * } catch (IOException e) { e.printStackTrace(); } }
+	 */
 
 }

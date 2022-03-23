@@ -1,4 +1,4 @@
-package com.AT.base;
+package testzeus.base;
 
 import com.jayway.jsonpath.JsonPath;
 
