@@ -2,11 +2,25 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.testzeus</groupId>
 	<artifactId>Test_Zeus</artifactId>
-	<version>1.1.0-SNAPSHOT</version>
+	<version>1.1.0</version>
+	<packaging>jar</packaging> 
 	<name>TestZeus</name>
 	<description>UI and API testing framework built specifically for Salesforce</description>
-	 <url>http://testzeus.com</url>
+	 <url>https://github.com/TestZeus/testzeus-archetype</url>
+	 <licenses> 
+	 <license> 
+	  <name>GPLV3 License</name>
+<url>https://github.com/TestZeus/testzeus-archetype/blob/b28d641720debe27ac30b4ab527a5f976d6e1a7f/LICENSE</url>      
+ </license> 
+ </licenses> 
+ <scm>   <connection>scm:git:git://github.com/TestZeus/testzeus-archetype.git</connection>   <developerConnection>scm:git:ssh://github.com:smilinrobin/TestZeus/testzeus-archetype.git</developerConnection>   <url>https://github.com/TestZeus/testzeus-archetype/tree/master</url> </scm>
+ <distributionManagement> 
+   <snapshotRepository>   <id>ossrh</id>        <url>https://oss.sonatype.org/content/repositories/snapshots</url> </snapshotRepository> 
+ 
+	<repository> <id>ossrh</id> <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url> </repository> 
+	 
 	
+</distributionManagement>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -196,21 +210,27 @@
 			</activation>
 			<build>
 				<plugins>
+				    <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.8</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+				<plugin>  <groupId>org.apache.maven.plugins</groupId>  <artifactId>maven-gpg-plugin</artifactId>  <version>1.6</version>  <executions>  <execution>    <id>sign-artifacts</id>   <phase>verify</phase>   <goals>     <goal>sign</goal>   </goals> </execution> </executions> </plugin>
+				
+				<plugin>  <groupId>org.apache.maven.plugins</groupId>  <artifactId>maven-source-plugin</artifactId>    <version>3.0.1</version> <executions>   <execution>    <id>attach-sources</id>   <goals>      <goal>jar</goal>   </goals>   </execution> </executions> </plugin>
+				
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-compiler-plugin</artifactId>
 						<version>3.3</version>
 					</plugin>
-					<!-- <plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<version>2.19</version>
-						<configuration>
-							<suiteXmlFiles>	Specify the TestNG XML file you want to run over here
-								<suiteXmlFile>src/test/resources/all-tests-chrome.xml</suiteXmlFile>
-							</suiteXmlFiles>
-						</configuration>
-					</plugin> -->
+					<plugin>   <groupId>org.apache.maven.plugins</groupId>  <artifactId>maven-javadoc-plugin</artifactId>         <version>3.0.0</version> <executions>   <execution>    <id>attach-javadocs</id>   <goals>     <goal>jar</goal>   </goals>   </execution>  </executions> </plugin> 
 					<plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-assembly-plugin</artifactId>
