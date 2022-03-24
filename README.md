@@ -7,7 +7,10 @@ This is the code base for creating Maven artifact for TestZeus. You can add it f
 </dependency>
 ```
 
-Please use the most updated version from Maven Central . 
+Please use the most updated version from Maven Central. 
+The URL is as follows: 
+https://search.maven.org/artifact/com.testzeus/Test_Zeus
+
 OR K.I.S.S (Keep It Simple Silly) and download the JAR. 
 
 For the super passionate ones, who would like to build from source : 
