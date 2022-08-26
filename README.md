@@ -15,7 +15,7 @@ OR K.I.S.S (Keep It Simple Silly) and download the JAR.
 
 For the super passionate ones, who would like to build from source : 
 ```
-mvn clean deploy
+mvn clean package
 ```
 
 Note : I would like to credit great coffee and good music (turntablism) to help me get through the Sonatype upload process. 🤗
