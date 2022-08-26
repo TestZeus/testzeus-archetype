@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.testzeus</groupId>
 	<artifactId>Test_Zeus</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 	<packaging>jar</packaging> 
 	<name>TestZeus</name>
 	<description>UI and API testing framework built specifically for Salesforce</description>
@@ -216,6 +216,9 @@
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
+			 <properties>
+        <gpg.executable>C:\Program Files (x86)\GnuPG\bin\gpg.exe</gpg.executable>
+      </properties>
 			<build>
 				<plugins>
 				    <plugin>
@@ -228,17 +231,33 @@
                     <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
+                  <dependencies>
+    <dependency>
+      <groupId>com.thoughtworks.xstream</groupId>
+      <artifactId>xstream</artifactId>
+      <version>1.4.15</version> <!-- apparently this needs to be exactly this version -->
+    </dependency>
+  </dependencies>
             </plugin>
 				<plugin>  <groupId>org.apache.maven.plugins</groupId>  <artifactId>maven-gpg-plugin</artifactId>  <version>1.6</version>  <executions>  <execution>    <id>sign-artifacts</id>   <phase>verify</phase>   <goals>     <goal>sign</goal>   </goals> </execution> </executions> </plugin>
 				
-				<plugin>  <groupId>org.apache.maven.plugins</groupId>  <artifactId>maven-source-plugin</artifactId>    <version>3.0.1</version> <executions>   <execution>    <id>attach-sources</id>   <goals>      <goal>jar</goal>   </goals>   </execution> </executions> </plugin>
+				<plugin>  <groupId>org.apache.maven.plugins</groupId>  <artifactId>maven-source-plugin</artifactId>    <version>3.0.1</version> <executions>   <execution>    <id>attach-sources</id>   <goals>      <goal>jar-no-fork</goal>   </goals>   </execution> </executions> </plugin>
 				
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-compiler-plugin</artifactId>
 						<version>3.3</version>
 					</plugin>
-					<plugin>   <groupId>org.apache.maven.plugins</groupId>  <artifactId>maven-javadoc-plugin</artifactId>         <version>3.0.0</version> <executions>   <execution>    <id>attach-javadocs</id>   <goals>     <goal>jar</goal>   </goals>   </execution>  </executions> </plugin> 
+					<plugin>   <groupId>org.apache.maven.plugins</groupId> 
+					 <artifactId>maven-javadoc-plugin</artifactId>         
+					 <version>3.0.0</version> 
+					 <configuration>
+    <additionalparam>-Xdoclint:none</additionalparam>
+  </configuration>
+					 <executions>   
+					 <execution>    <id>attach-javadocs</id>   <goals>     <goal>jar</goal>   </goals>   </execution>  
+					 </executions>
+					  </plugin> 
 					<plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-assembly-plugin</artifactId>

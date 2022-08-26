@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 
-import org.openqa.selenium.By;
+import org.openqa.selenium.By.ByName;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -16,14 +16,12 @@ import com.jayway.jsonpath.JsonPath;
 
 import net.minidev.json.JSONArray;
 
-/**
- * @author Robin
- * @date: 04/02/2021
- * @purpose: This class gets the UI layout from UI API and tries to make the
- *           xpath for all the elements 👼
- * @see: A lot of these methods are implemented using JSONPATH to parse the
- *       response we get from UI API
- */
+
+/*@author Robin
+@date: 04/02/2021
+@purpose: This class gets the UI layout from UI API and tries to make the xpath for all the elements 👼
+@see: A lot of these methods are implemented using JSONPATH to parse the response we get from UI API*/
+
 
 public class SFPageBase extends PageBase {
 
@@ -161,22 +159,22 @@ public class SFPageBase extends PageBase {
 			Thread.sleep(5000);
 			// Locator design inspired by
 			// https://trailblazers.salesforce.com/_ui/core/chatter/groups/GroupProfilePage?g=0F93A000000DQPd&fId=0D54S000008HKSK
-			we = driver.findElement(By.xpath("//input[@id=string(//label[text()='" + label + "']/@for)]"));
+			we = driver.findElement(ByName.xpath("//input[@id=string(//label[text()='" + label + "']/@for)]"));
 			we.sendKeys(targetvalue);
 			System.out.println("Sent values as " + targetvalue);
 			break;
 		case "[\"TextArea\"]":
-			we = driver.findElement(By.xpath("//textarea[@id=string(//label[text()='" + label + "']/@for)]"));
+			we = driver.findElement(ByName.xpath("//textarea[@id=string(//label[text()='" + label + "']/@for)]"));
 			we.sendKeys(targetvalue);
 			break;
 		case "[\"Picklist\"]":
-			we = driver.findElement(By.xpath("//input[@id=string(//label[text()='" + label + "']/@for)]"));
+			we = driver.findElement(ByName.xpath("//input[@id=string(//label[text()='" + label + "']/@for)]"));
 			we.sendKeys(targetvalue);
 			Thread.sleep(2000);
 			we.sendKeys(Keys.ENTER);
 			break;
 		case "[\"Reference\"]":
-			we = driver.findElement(By.xpath("//input[@id=string(//label[text()='" + label + "']/@for)]"));
+			we = driver.findElement(ByName.xpath("//input[@id=string(//label[text()='" + label + "']/@for)]"));
 			we.sendKeys(Keys.ARROW_DOWN);
 			Thread.sleep(2000);
 			we.sendKeys(Keys.ENTER);

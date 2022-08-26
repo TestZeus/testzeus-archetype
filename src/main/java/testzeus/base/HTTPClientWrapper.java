@@ -32,7 +32,7 @@ public class HTTPClientWrapper {
 	 */
 
 	private static String REST_ENDPOINT = "/services/data";
-	private static String API_VERSION = "/v48.0";
+	private static String API_VERSION = "/v54.0";
 	private static String baseUri;
 	private static Header oauthHeader;
 	private static Header prettyPrintHeader = new BasicHeader("X-PrettyPrint", "1");
