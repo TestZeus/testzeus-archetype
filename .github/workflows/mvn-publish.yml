@@ -4,6 +4,7 @@
 name: Shorter Java CI with MVN
 
 on:
+  workflow_dispatch: # Put here!!
   push:
     branches: [ main ]
 
