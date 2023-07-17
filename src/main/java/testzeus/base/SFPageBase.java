@@ -96,7 +96,7 @@ public class SFPageBase extends PageBase {
 public static void sectionGetter() throws Exception {
 		// This method brings in the count of sections displayed on the UI
 		String apipath = "$..objectApiName";
-		String sobjecttype = JsonPath.read(uiapi_record_json, apipath);
+		String sobjecttype = (String) JsonPath.read(uiapi_record_json, apipath);
 		String sectionspath = "$.layouts."+sobjecttype+"..sections";
 		JSONArray sectionsparent = JsonPath.read(uiapi_record_json, sectionspath);
 		JSONArray sectionsarray = (JSONArray) sectionsparent.get(0);
