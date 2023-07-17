@@ -96,7 +96,7 @@ public class SFPageBase extends PageBase {
 public static void sectionGetter() throws Exception {
 		// This method brings in the count of sections displayed on the UI
 		String apipath = "$..objectApiName";
-		String sobjecttype = (String) JsonPath.read(uiapi_record_json, apipath);
+		String sobjecttype = JsonPath.read(uiapi_record_json, apipath).toString();
 		String sectionspath = "$.layouts."+sobjecttype+"..sections";
 		JSONArray sectionsparent = JsonPath.read(uiapi_record_json, sectionspath);
 		JSONArray sectionsarray = (JSONArray) sectionsparent.get(0);
@@ -170,7 +170,7 @@ public static void sectionGetter() throws Exception {
 			we.sendKeys(targetvalue);
 			break;
 		case "[\"Picklist\"]":
-			we = driver.findElement(ByName.xpath("//input[@id=string(//label[text()='" + label + "']/@for)]"));
+			we = driver.findElement(ByName.xpath("//button[@id=string(//label[text()='" + label + "']/@for)]"));
 			we.sendKeys(targetvalue);
 			Thread.sleep(2000);
 			we.sendKeys(Keys.ENTER);
