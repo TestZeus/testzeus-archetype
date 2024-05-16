@@ -238,7 +238,6 @@ public static void sectionGetter() throws Exception {
 
 	/***
      * <pre>Locates an element, doing some creative error handling where it can help find the element</pre>
-     * @author <a href="https://github.com/shawnjburke">Shawn J Burke</a>
      * @param xPath - valid Xpath locator string
      * @param expectedSalesForceType - Identified field type. String, Url, Int, Phone, Currency, Double, Date, Boolean,  TextArea, Picklist, Reference.
      * @return the found WebElement
