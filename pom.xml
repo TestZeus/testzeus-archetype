@@ -38,7 +38,7 @@
 		<testng.version>7.0.0</testng.version>
 		<commons-lang.version>2.6</commons-lang.version>
 		<super-csv.version>2.4.0</super-csv.version>
-		<jsoup.version>1.10.1</jsoup.version>
+		<jsoup.version>1.17.2</jsoup.version>
 		<rest-assured.version>2.9.0</rest-assured.version>
 		<junit.version>4.12</junit.version>
 		<opencsv.version>2.3</opencsv.version>
