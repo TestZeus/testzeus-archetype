@@ -7,6 +7,7 @@ import java.util.LinkedHashSet;
 import org.openqa.selenium.By.ByName;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -107,7 +108,9 @@ public static void sectionGetter() throws Exception {
 	public static void labelGetter() throws Exception {
 		// These labels are gathered from layoutComponents as we get labels which are
 		// actually displayed on the UI rather than all the fields for the sObject
-		String labelpath = "$..[?(@.editableForUpdate == true)].layoutComponents..label";
+
+//		String labelpath = "$..[?(@.editableForUpdate == true)].layoutComponents..label";	// Fix v1.0.5
+		String labelpath = "$..[?(@.editableForUpdate == true)]..label";
 		JSONArray listofduplicatelabels = JsonPath.read(uiapi_record_json, labelpath);
 		// As we are hitting modes=View, Edit, hence we are getting duplicates.
 		LinkedHashSet<String> labels = new LinkedHashSet<String>();
@@ -161,7 +164,8 @@ public static void sectionGetter() throws Exception {
 			Thread.sleep(5000);
 			// Locator design inspired by
 			// https://trailblazers.salesforce.com/_ui/core/chatter/groups/GroupProfilePage?g=0F93A000000DQPd&fId=0D54S000008HKSK
-			we = driver.findElement(ByName.xpath("//input[@id=string(//label[text()='" + label + "']/@for)]"));
+//			we = driver.findElement(ByName.xpath("//input[@id=string(//label[text()='" + label + "']/@for)]"));
+			we = findElementByXpath("//input[@id=string(//label[text()='" + label + "']/@for)]", type);
 			we.sendKeys(targetvalue);
 			System.out.println("Sent values as " + targetvalue);
 			break;
@@ -232,4 +236,31 @@ public static void sectionGetter() throws Exception {
 
 	}
 
+	/***
+     * <pre>Locates an element, doing some creative error handling where it can help find the element</pre>
+     * @param xPath - valid Xpath locator string
+     * @param expectedSalesForceType - Identified field type. String, Url, Int, Phone, Currency, Double, Date, Boolean,  TextArea, Picklist, Reference.
+     * @return the found WebElement
+     */
+	public WebElement findElementByXpath(String xPath, String expectedSalesForceType) {
+		WebElement we = null;
+		try {
+			we = driver.findElement(ByName.xpath(xPath));
+		} catch(NoSuchElementException noWe) {
+			// Check type and perform only if applicable for performance
+			System.out.println("Expected sales force field type = " + expectedSalesForceType);
+			if(expectedSalesForceType.equalsIgnoreCase("[\"string\"]")) {
+				// In a customized SalesForce instance a TextArea for Description field on account object becomes
+				// identified as a string.  Let's see if we can modify the XPath expression for a TextArea.  If found
+				// use it.
+				System.out.println("Xpath not found: " + xPath);
+				String newPath = "//textarea" + xPath.substring(xPath.indexOf("//input")+7);
+				System.out.println("Attempting alternate xPath: " + newPath);
+				// If not found will throw the error to the stack
+				we = driver.findElement(ByName.xpath(newPath));
+			}
+		}
+
+		return we;
+	}
 }

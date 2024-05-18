@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.testzeus</groupId>
 	<artifactId>Test_Zeus</artifactId>
-	<version>1.0.4</version>
+	<version>1.0.5</version>
 	<packaging>jar</packaging> 
 	<name>TestZeus</name>
 	<description>UI and API testing framework built specifically for Salesforce</description>
@@ -34,19 +34,18 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<selinium.java.version>3.141.59</selinium.java.version>
 		<apache.httpcomponents.core.version>4.4.4</apache.httpcomponents.core.version>
-		<apache.httpcomponents.client.version>4.5.2</apache.httpcomponents.client.version>
+		<apache.httpcomponents.client.version>4.5.14</apache.httpcomponents.client.version>
 		<testng.version>7.0.0</testng.version>
 		<commons-lang.version>2.6</commons-lang.version>
 		<super-csv.version>2.4.0</super-csv.version>
-		<jsoup.version>1.10.1</jsoup.version>
+		<jsoup.version>1.17.2</jsoup.version>
 		<rest-assured.version>2.9.0</rest-assured.version>
 		<junit.version>4.12</junit.version>
 		<opencsv.version>2.3</opencsv.version>
-		<json.version>20160810</json.version>
+		<json.version>20240303</json.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<version.commons-io>2.4</version.commons-io>
-		
+		<version.commons-io>2.16.1</version.commons-io>
 	</properties>
 
 	<dependencies>
@@ -55,7 +54,7 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>23.0</version>
+			<version>33.2.0-jre</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
@@ -71,7 +70,7 @@
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
-			<version>2.8.2</version>
+			<version>2.10.1</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -108,9 +107,14 @@
 <!-- 		</dependency> -->
 
 		<dependency>
+			<groupId>net.minidev</groupId>
+			<artifactId>json-smart</artifactId>
+			<version>2.5.1</version>
+		</dependency>
+		<dependency>
 			<groupId>com.jayway.jsonpath</groupId>
 			<artifactId>json-path</artifactId>
-			<version>2.4.0</version>
+			<version>2.9.0</version>
 		</dependency>
 
 	
@@ -188,13 +192,13 @@
 <dependency>
     <groupId>com.fasterxml.jackson.core</groupId>
     <artifactId>jackson-databind</artifactId>
-    <version>2.12.3</version>
+    <version>2.17.1</version>
 </dependency>
 
 <dependency>
     <groupId>io.github.bonigarcia</groupId>
     <artifactId>webdrivermanager</artifactId>
-    <version>5.0.3</version>
+    <version>5.8.0</version>
     <scope>test</scope>
 </dependency>
 
@@ -252,8 +256,8 @@
 					 <artifactId>maven-javadoc-plugin</artifactId>         
 					 <version>3.0.0</version> 
 					 <configuration>
-    <additionalparam>-Xdoclint:none</additionalparam>
-  </configuration>
+    					<doclint>none</doclint>
+  					 </configuration>
 					 <executions>   
 					 <execution>    <id>attach-javadocs</id>   <goals>     <goal>jar</goal>   </goals>   </execution>  
 					 </executions>
