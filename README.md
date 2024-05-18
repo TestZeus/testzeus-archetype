@@ -3,7 +3,7 @@ This is the code base for creating Maven artifact for TestZeus. You can add it f
 <dependency>
   <groupId>com.testzeus</groupId>
   <artifactId>Test_Zeus</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.5</version>
 </dependency>
 ```
 
